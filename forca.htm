@@ -1,0 +1,309 @@
+<title>Forca</title>
+<style>
+<!--
+.teclado {
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-color:#000000;
+ 	color:#000000;
+	font-weight:bold; 
+	text-decoration : none;
+}
+.visao {
+	font-size: 16px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-color:#FF0000;
+ 	color:#FF0000;
+	font-weight:bold;
+	text-decoration : none;
+}
+.titulo{
+  font-weight:bold;
+  text-indent: center;
+  line-height: 30px;
+}
+
+.gameover {
+	font-size: 13px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-color:#000000;
+ 	color:#000000;
+	font-weight:bold;
+	text-decoration : none;
+}
+//-->
+</style>
+<html>
+<body onload="sorteio();">
+<center>
+<div class="titulo">JOGO DA FORCA</div>
+<div id="jg"></div>
+<div class="titulo">TECLADO</div>
+<div id="tcdo">
+<script language="JavaScript">
+
+  //  BIBLIOTECA DE PALAVRAS  
+  var palavras   = new Array();
+    palavras[0]  = "carteira";
+    palavras[1]  = "brasil";
+    palavras[2]  = "amorzinho";
+    palavras[3]  = "fresquinho";
+    palavras[4]  = "andrezinho";
+    palavras[5]  = "bobeira";
+    palavras[6]  = "marcos";
+    palavras[7]  = "selio";
+	palavras[8]  = "jogo";
+	palavras[9]  = "mapa";
+	palavras[10] = "babado";
+	palavras[11] = "ana";
+	palavras[12] = "critico";
+	palavras[13] = "windows";
+	palavras[14] = "linux";
+	palavras[15] = "macaco";
+	palavras[16] = "panela";
+	palavras[17] = "frederico";
+	palavras[18] = "fofura";
+	palavras[19] = "grafico";
+	palavras[20] = "mula";
+	palavras[21] = "cavalo";
+	palavras[22] = "escola";
+  palavras[23] = "perspicaz"
+  palavras[24] = "perseverança"
+  palavras[25] = "embuste"
+  palavras[26] = "prescindir"
+  palavras[27] = "significado"
+  palavras[28] = "cônjuge"
+  palavras[29] = "condescendente"
+  palavras[30] = "exceção"
+  palavras[31] = "anuência"
+  palavras[32] = "perspectiva"
+  palavras[33] = "empatia"
+  palavras[34] = "recíproco"
+  palavras[35] = "diligência"
+  palavras[36] = "prolixo"
+  palavras[37] = "presunçoso"
+  palavras[38] = "peculiar"
+  palavras[39] = "efêmero"
+  palavras[40] = "intempérie"
+  palavras[41] = "dissimulado"
+  palavras[42] = "corroborar"
+  palavras[43] = "estória"
+  palavras[44] = "denegrir"
+  palavras[45] = "retificar"
+  palavras[46] = "impressão"
+  palavras[47] = "pêsames"
+  palavras[48] = "concessão"
+  palavras[49] = "condolências"
+  palavras[50] = "reciprocidade"
+  palavras[51] = "intrínseco"
+  palavras[52] = "contemporâneo"
+  palavras[53] = "âmbito"
+  palavras[54] = "remanescente"
+  palavras[55] = "concepção"
+  palavras[56] = "plenitude"
+  palavras[57] = "análogo"
+  palavras[58] = "extrovertido"
+  palavras[59] = "sagaz"
+  palavras[60] = "escrúpulo"
+  palavras[61] = "idílico"
+  palavras[62] = "deferido"
+  palavras[63] = "iminente"
+  palavras[64] = "invasivo"
+  palavras[65] = "resiliência"
+  palavras[66] = "complacente"
+  palavras[67] = "exceto"
+  palavras[68] = "prerrogativa"
+  palavras[69] = "sublime"
+  palavras[70] = "presunção"
+  palavras[71] = "fato"
+  palavras[72] = "complacência"
+  palavras[73] = "prudente"
+  palavras[74] = "supérfluo"
+  palavras[75] = "essencial"
+  palavras[76] = "néscio"
+  palavras[77] = "algoz"
+  palavras[78] = "incipiente"
+  palavras[79] = "corolário"
+  palavras[80] = "referência"
+  palavras[81] = "vicissitude"
+  palavras[82] = "sucinto"
+  palavras[83] = "parcimônia"
+  palavras[84] = "êxito"
+  palavras[85] = "implícito"
+  palavras[86] = "discrepância"
+  palavras[87] = "detrimento"
+  palavras[88] = "vereda"
+  palavras[89] = "característica"
+  palavras[90] = "inconveniente"
+  palavras[91] = "equidade"
+  palavras[92] = "condescendência"
+  palavras[93] = "eminente"
+  palavras[94] = "cinismo"
+  palavras[95] = "deliberar"
+  palavras[96] = "índole"
+  palavras[97] = "resignado"
+  palavras[98] = "ratificar"
+  palavras[99] = "reiterarinerente"
+ 
+                  
+                  
+	// Variaveis GLOBAIS
+    var  k;
+
+    var dj  = document.getElementById('jg');
+    var erro = 1;
+    var d = "<pre><font class=gameover>";
+    var iconte = Math.floor(Math.random()*(99 - 0) + 0);
+    var ki = new Array(palavras[iconte].length);
+      // adicinando adicionar o valor "__" 
+	//no vetor que armazena a palavra sorteada;
+	var itempodejogo = 0;
+    for(k=0;k<palavras[iconte].length;k++){
+
+        ki[k]="__";
+   }
+
+    var p = new Array();
+	
+function sorteio() {
+    var djc = "<table cellpadding=2  ";
+        djc = djc + "cellspacing=4 border=0 width=390 ";
+        djc = djc + " height=40 ><tr>";
+    for(k = 0; k < palavras[iconte].length; k++){
+   		p[k] = k;
+		djc = djc + "<td style='border: 0px solid #000000;' ";
+        djc = djc + " align=center ";
+        djc = djc + " valign=middle class=visao> __ </td>";
+	}
+        djc = djc + "</tr></table><br>";
+ 	    dj.innerHTML = djc;
+}
+
+function verificaerro(){
+   var m = document.getElementById('g');
+   switch (erro){
+    case 0:
+        break
+    case 1:
+        d = d + "      O   \n"
+        break
+    case 2:
+        d = d + "    -"
+        break
+    case 3:
+        d = d + " | "
+        break
+    case 4:
+        d = d + "-\n"
+        break
+    case 5:
+        d = d + "     /"
+        break
+    case 6:
+        d = d + " \\ \n"
+        break
+    default:
+    var tecladaosome = document.getElementById('tecladao');
+        tecladaosome.style.display = 'none';
+
+        d = d + "<font class=gameover><b>GAME OVER</b></font><br>";
+        
+        d = d + "<br>";
+        d = d + "<a href=# onclick='window.location.reload( false );' ";
+        d = d + "  tyle='border: ";
+        d = d + " 1px solid #000000;' class=gameover>[ NOVO JOGO ]</a><br>";
+        d = d + "<font class=gameover> Palavra: <blink>" + palavras[iconte].toUpperCase() +"</blink></font>";
+		
+  }
+     // passar resultados de erro;
+	// criar boneco para a forca;  
+        m.innerHTML = d;
+        erro++;		
+}
+
+function jogar(letra){
+   var nome = palavras[iconte].toUpperCase();
+       nome.split("");
+   var erroSim = 0;
+   var coleta = "";
+   for(k = 0; k < palavras[iconte].length; k++){
+      
+		if(nome[k] == letra){
+
+                ki[k] = letra;
+
+         }
+             if(ki[k] != "__") {
+
+                coleta =  coleta + ki[k];
+
+             }
+       
+    }
+     if(coleta.match(letra) == letra){
+
+        //  ENCONTROU
+      } else {
+               erroSim = 1;
+             }
+      var ik;
+      var t;
+      t = "<table cellpadding=2 cellspacing=4 ";
+      t = t + " border=0 width=390 height=40 ";
+      t = t + "  style='border: ";
+      t = t + " '><tr>";
+	  
+     for(ik = 0; ik < palavras[iconte].length; ik++){
+	     t = t + "<td style='border: ";
+         t = t + "0px solid #000000;' ";
+         t = t + " align=center valign=middle ";
+         t = t + " class=visao>"+ ki[ik] +"</td>";
+     }
+	 
+     if(erroSim == 1){            
+        verificaerro();
+        erroSim = 0;
+     }
+   	   t = t + "</tr></table><br>";
+  	   dj.innerHTML = t;
+	   
+     if(coleta == palavras[iconte].toUpperCase()){
+
+            var winmsg = "<br>";
+                winmsg = winmsg + "<br><br><font class=gameover>Palavra revelada: <b><blink>";
+                winmsg = winmsg + palavras[iconte].toUpperCase() + "</blink>";
+                winmsg = winmsg + "<br><br>PARABÉNS VOCÊ VENCEU!!!<br><br>";
+                winmsg = winmsg + "<a href=# onclick='window.location.reload( false );' ";
+                winmsg = winmsg + "class=gameover>[ NOVO JOGO ]</a>";
+              
+            var winG = document.getElementById('g');
+                winG.innerHTML =  winmsg;
+               var tsome = document.getElementById('tecladao');
+                   tsome.style.display = 'none';
+     }
+}   
+
+	document.write("<table id=tecladao cellpadding=3 cellspacing=6  width=390 height=90");
+	document.write(" ><tr> <form name=f action=# onsubmit='return false;'>");
+var linha=0;
+for(i=65; i < 91; i++){
+    if(linha == 8) {
+       linha=0;
+       document.write("</tr><tr style='border: 1px #000000;'>");
+    }
+    document.write("<td align=center valign=middle width=15 ");
+    document.write("   > ");
+    document.write("<input type=submit name='" + String.fromCharCode(i)+"'  onclick=\"jogar('" + String.fromCharCode(i));
+    document.write("');document.f."+ String.fromCharCode(i)+".style.display ='none';\" class=teclado value=" + String.fromCharCode(i) + " ></td>");
+    linha++;
+}
+    document.write("</tr></form></table>");
+</script>
+</div>
+
+<div id="g"></div>
+
+</body>
+
+</html>
+
